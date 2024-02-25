@@ -21,3 +21,12 @@ exports.getUsers = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+exports.deleteUsers = async (req, res) => {
+    try {
+        const user = await User.findOneAndDelete({_id: req.query.delete});
+        res.json('User deleted successully.');
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
